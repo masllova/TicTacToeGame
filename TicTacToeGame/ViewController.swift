@@ -33,6 +33,9 @@ class ViewController: UIViewController {
     
     var nought = "O"
     var cross = "X"
+    var playersInsteadNought = ["🦄", "🐥", "🌸", "☀️", "❤️"]
+    var playersInsteadCross = ["🐛", "🐢", "💎", "🍀", "🦋"]
+    
     var board = [UIButton]()
     
     var crossScore = 0
@@ -43,6 +46,20 @@ class ViewController: UIViewController {
         initBoard()
         // Do any additional setup after loading the view.
     }
+    
+    @IBAction func changePlayers(_ sender: Any) {
+        turnLabel.text = ""
+        for button in board {
+            button.setTitle(nil, for: .normal)
+            button.isEnabled = true
+        }
+        nought = playersInsteadNought.randomElement()!
+        cross = playersInsteadCross.randomElement()!
+        
+        crossScore = 0
+        noughtScore = 0
+    }
+    
   
     @IBAction func boardTapAction(_ sender: UIButton) {
         addToBoard(sender)
